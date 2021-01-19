@@ -2,7 +2,6 @@
 # Test Processing II  #
 #######################
 
-
 def digits_to_words(input_string):
     """
     인풋으로 받는 스트링에서 숫자만 추출하여 영어 단어로 변환하여 단어들이 연결된 스트링을 반환함
@@ -19,16 +18,12 @@ def digits_to_words(input_string):
             digit_string (string): 위 요건을 충족시킨 숫자만 영어단어로 추출된 string
             ex - 'one nine one zero four'
 
-        Examples:
-            >>> import text_processing2 as tp2
-            >>> digits_str1 = "Zip Code: 19104"
-            >>> tp2.digits_to_words(digits_str1)
-            'one nine one zero four'
-            >>> digits_str2 = "Pi is 3.1415..."
-            >>> tp2.digits_to_words(digits_str2)
-            'three one four one five'
     """
-    digit_string = None
+    num_dict = dict(zip(["1","2","3","4","5","6","7","8","9","0"],
+                        ["one","two","three","four","five","six","seven","eight","nine","zero"]))
+
+    digit_string = ''.join(map(lambda x: num_dict[x]+" " if x in num_dict.keys() else "", input_string))
+    digit_string = digit_string.strip()
     return digit_string
 
 
@@ -38,7 +33,6 @@ def digits_to_words(input_string):
 두번째로는, 변수 이름을 대소문자 구별해 구분자 (delimiter)없이 쓰는 경우가 있습니다. 
 이 두번째의 경우에는 첫번째 단어는 소문자로, 그 후에 오는 단어들의 첫번째 글자들은 대문자로 쓰입니다 (ex. camelCaseVariable). 
 """
-
 
 def to_camel_case(underscore_str):
     """
@@ -51,18 +45,10 @@ def to_camel_case(underscore_str):
 
         Returns:
             camelcase_str (string): camelcase를 따른 스트링
-
-        Examples:
-            >>> import text_processing2 as tp2
-            >>> underscore_str1 = "to_camel_case"
-            >>> tp2.to_camel_case(underscore_str1)
-            "toCamelCase"
-            >>> underscore_str2 = "__EXAMPLE__NAME__"
-            >>> tp2.to_camel_case(underscore_str2)
-            "exampleName"
-            >>> underscore_str3 = "alreadyCamel"
-            >>> tp2.to_camel_case(underscore_str3)
-            "alreadyCamel"
     """
-    camelcase_str = None
+    underscore_str = "__Example__cAse__"
+
+    camelcase_str = ''.join([x.capitalize() for x in underscore_str.strip('_').split("_")])
+    camelcase_str = camelcase_str[0].lower() + camelcase_str[1:]
+
     return camelcase_str
