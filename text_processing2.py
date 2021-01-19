@@ -46,9 +46,8 @@ def to_camel_case(underscore_str):
         Returns:
             camelcase_str (string): camelcase를 따른 스트링
     """
-    underscore_str = "__Example__cAse__"
 
-    camelcase_str = ''.join([x.capitalize() for x in underscore_str.strip('_').split("_")])
+    camelcase_str = ''.join([x[0].upper()+x[1:] for x in underscore_str.strip('_').split("_")])
     camelcase_str = camelcase_str[0].lower() + camelcase_str[1:]
 
     return camelcase_str
